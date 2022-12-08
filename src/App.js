@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+const App = () => { // ES6
+  const data = {
+    name: 'John',
+    age: 40,
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Child data={data} />
     </div>
   );
+}
+
+// prop drilling!
+
+// one way data binding 
+
+const Child = ({ data }) => { // ES6
+  return (
+    <div>
+      <SecondChildComponent data={data} />
+    </div>
+  )
+}
+
+const SecondChildComponent = ({ data }) => {
+  return (
+    <div>
+      <ThirdComponent data={data} />
+    </div>
+  )
+}
+
+const ThirdComponent = ({ data }) => {
+  return (
+        <div>
+      {data.name}
+      <br />
+      {data.age}
+    </div>
+  )
 }
 
 export default App;
